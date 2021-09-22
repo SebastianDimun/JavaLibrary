@@ -46,50 +46,50 @@ public class Main {
 
         while (programRunning) {
             printConsoleInterface();
-            scannedInt = sc.nextInt();
-            switch (scannedInt) {
-                case 1: {
+            scannedText = sc.nextLine();
+            switch (scannedText) {
+                case "1": {
                     library.addBook();
                     break;
 
                 }
-                case 2: {
+                case "2": {
                     newCustomer = new Customer(library);
                     library.addCustomer(newCustomer);
                     break;
                 }
-                case 3: {
+                case "3": {
                     library.changeAddres();
                     break;
                 }
-                case 4: {
+                case "4": {
                     for (int i = 0; i < library.getBooks().size(); i++) {
                         System.out.println("Book num : " + (i + 1) + library.getBooks().get(i));
                     }
                     break;
                 }
-                case 5: {
+                case "5": {
                     for (int i = 0; i < library.getCustomers().size(); i++) {
                         System.out.println("Customer num: " + (i + 1) + library.getCustomers().get(i));
                     }
                     break;
                 }
-                case 6: {
+                case "6": {
                     for (int i = 0; i < library.getAvailableBooks().size(); i++) {
                         System.out.println("Book num : " + (i + 1) + library.getBooks().get(i));
                     }
                     break;
                 }
-                case 7: {
+                case "7": {
                     borrowingSystem.borrowBook();
                     break;
                 }
-                case 8: {
+                case "8": {
                     borrowingSystem.returnBook();
                     break;
 
                 }
-                case 0: {
+                case "0": {
                     programRunning = false;
                     break;
                 }

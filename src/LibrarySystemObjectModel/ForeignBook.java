@@ -4,16 +4,29 @@ import java.util.Scanner;
 
 public class ForeignBook  extends Book{
 
-    private final String language;
+    private  String language;
 
 
     ForeignBook(String typeOfBook){
         super(typeOfBook);
         System.out.print("Add language of book: ");
         Scanner sc = new Scanner(System.in);
-        String scannedText = sc.nextLine();
-        this.language = textFormating(scannedText);
+        String scannedText;
 
+        while (true){
+            try {
+                scannedText = sc.nextLine();
+                if(scannedText.length()<1){
+                    System.out.println("Bad input, try write correct  count of pages:");
+                }else{
+                    this.language = textFormating(scannedText);
+                    break;
+                }
+            }
+            catch (Exception e){
+                System.out.println("Bad input, try write correct  count of pages:");
+            }
+        }
     }
 
 

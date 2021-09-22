@@ -18,15 +18,43 @@ public class BorrowingSystem {
         }
 
         System.out.println("\nYou are borrowing book from library, select number of customer in lib system who want to borrow a book");
-        this.scannedText = sc.nextLine();//-1
-        Customer customer =this.library.getCustomer(Integer.parseInt(this.scannedText)-1);//-1
+        Customer customer;
+        while (true){
+            try {
+                scannedText = sc.nextLine();
+                if(scannedText.length()<1){
+                    System.out.println("Bad input, try write correct  num:");
+                }else{
+                    customer =this.library.getCustomer(Integer.parseInt(this.scannedText)-1);//-1
+                    break;
+                }
+            }
+            catch (Exception e){
+                System.out.println("Bad input, try write correct num:");
+            }
+        }
 
         for (int i = 0; i < library.getAvailableBooks().size(); i++) {
             System.out.println("Book num : " + (i + 1) + library.getBooks().get(i));
         }
         System.out.println("Select number from available books to borrow");
-        this.scannedText = sc.nextLine();
-        Book book = this.library.getAvailableBook(Integer.parseInt(this.scannedText)-1);
+        Book book;
+        while (true){
+            try {
+                scannedText = sc.nextLine();
+                if(scannedText.length()<1){
+                    System.out.println("Bad input, try write correct  num:");
+                }else{
+                    book = this.library.getAvailableBook(Integer.parseInt(this.scannedText)-1);
+                    break;
+                }
+            }
+            catch (Exception e){
+                System.out.println("Bad input, try write correct num:");
+            }
+        }
+
+
         for (Book b:this.library.getBooks()){
             if(b.name.equals(book.name) ){
                 if(customer.getBorrowedBooks().size()<3 ){
@@ -44,23 +72,53 @@ public class BorrowingSystem {
         }
 
         System.out.println("\nYou are returning book from library, select number of customer in lib system who want to return a book");
-        this.scannedText = sc.nextLine();//-1
-        Customer customer =this.library.getCustomer(Integer.parseInt(this.scannedText)-1);//-1
-
+        Customer customer;
+        while (true){
+            try {
+                scannedText = sc.nextLine();
+                if(scannedText.length()<1){
+                    System.out.println("Bad input, try write correct  num:");
+                }else{
+                    customer =this.library.getCustomer(Integer.parseInt(this.scannedText)-1);//-1
+                    break;
+                }
+            }
+            catch (Exception e){
+                System.out.println("Bad input, try write correct num:");
+            }
+        }
         for (int i = 0; i < customer.getBorrowedBooks().size(); i++) {
             System.out.println("Borrowed book num : " + (i + 1) + customer.getBorrowedBooks().get(i));
         }
-        System.out.println("Select number from borrowed books to return");
-        this.scannedText = sc.nextLine();
-        Book book = customer.getBorrowedBooks().get(Integer.parseInt(this.scannedText) - 1);
-        for (Book b:this.library.getBooks()){
-            if(b.name.equals(book.name) ){
-                if(customer.getBorrowedBooks().size()<3 ){
-                    b.setBorrowed(false);
-                    customer.getBorrowedBooks().remove(b);
-                    this.library.getAvailableBooks().add(book);
+        if(customer.getBorrowedBooks().size()>0){
+            System.out.println("Select number from borrowed books to return");
+            Book book;
+            while (true){
+                try {
+                    scannedText = sc.nextLine();
+                    if(scannedText.length()<1){
+                        System.out.println("Bad input, try write correct  num:");
+                    }else{
+                        book  = customer.getBorrowedBooks().get(Integer.parseInt(this.scannedText) - 1);
+                        break;
+                    }
+                }
+                catch (Exception e){
+                    System.out.println("Bad input, try write correct num:");
+                }
+            }
+            for (Book b:this.library.getBooks()){
+                if(b.name.equals(book.name) ){
+                    if(customer.getBorrowedBooks().size()<3 ){
+                        b.setBorrowed(false);
+                        customer.getBorrowedBooks().remove(b);
+                        this.library.getAvailableBooks().add(book);
+                    }
                 }
             }
         }
+        else
+            System.out.println("this customer has no borrowed any book");
+
     }
 }

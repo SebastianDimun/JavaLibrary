@@ -48,6 +48,10 @@ public class Library {
                 newBook = new ForeignBook("Foreign");
                 this.books.add(newBook);
                 break;
+            }default -> {
+                System.out.println("bad input, you creating standard book");
+                newBook = new Book("Standard");
+                this.books.add(newBook);
             }
         }
     }
@@ -67,25 +71,26 @@ public class Library {
             System.out.println("Customer num: " + (i + 1) + this.getCustomers().get(i));
         }
         System.out.println("Select number of customer");
-        scannedText = sc.nextLine();
-        int customerNum = Integer.parseInt(scannedText)-1;
+
+        int customerNum;
+        while (true){
+            try {
+                scannedText = sc.nextLine();
+
+                if(scannedText.length()<1){
+                    System.out.println("Bad input, try write correct  num:");
+                }else{
+                    customerNum = Integer.parseInt(scannedText)-1;
+                    break;
+                }
+            }
+            catch (Exception e){
+                System.out.println("Bad input, try write correct num:");
+            }
+        }
         System.out.println("You changing customer  "+this.getCustomers().get(customerNum).getFirstName() + " "+this.getCustomers().get(customerNum).getLastName());
+        this.getCustomers().get(customerNum).changeAddress();
 
-        System.out.println("Set customer street name");
-        scannedText = sc.nextLine();
-        this.getCustomers().get(customerNum).getAddress().setStreetName(scannedText);
-
-        System.out.println("Set customer street num");
-        scannedText = sc.nextLine();
-        this.getCustomers().get(customerNum).getAddress().setStreetNum(Integer.parseInt(scannedText));
-
-        System.out.println("Set customer city");
-        scannedText = sc.nextLine();
-        this.getCustomers().get(customerNum).getAddress().setCity(scannedText);
-
-        System.out.println("Set customer country");
-        scannedText = sc.nextLine();
-        this.getCustomers().get(customerNum).getAddress().setCountry(scannedText);
     }
 
     public void addCustomer(Customer customer) {

@@ -11,20 +11,57 @@ public class Book {
 
 
 
+
     public Book(String typeOfBook){
         System.out.print("You are creating a book, how you wish to name it? Name:");
         Scanner sc = new Scanner(System.in);
-        String scannedText = sc.nextLine();
-        this.name = textFormating(scannedText);
+        String scannedText;
+        while(true){
+            try {
+                scannedText = sc.nextLine();
+                if(scannedText.length()<1){
+                    System.out.println("Bad input, try write correct name:");
+                }else{
+                    this.name = textFormating(scannedText);
+                    break;
+                }
+            }
+            catch (Exception e){
+                System.out.println("Bad input, try write correct name:");
+            }
+        }
 
-        System.out.print("Your book is named, who is the author of the book? Write a first name of author: ");
-        scannedText = sc.nextLine();
-        this.author = textFormating(scannedText);
+        System.out.print("Your book is named, who is the author of the book? Write a name of author: ");
 
+        while (true){
+            try {
+                scannedText = sc.nextLine();
+                if(scannedText.length()<1){
+                    System.out.println("Bad input, try write correct  name of author:");
+                }else{
+                    this.author = textFormating(scannedText);
+                    break;
+                }
+            }
+            catch (Exception e){
+                System.out.println("Bad input, try write correct name:");
+            }
+        }
         System.out.print("How many pages the book has?: ");
-        scannedText = sc.nextLine();
-        this.numberOfPages = Integer.parseInt(scannedText);
-
+        while (true){
+            try {
+                scannedText = sc.nextLine();
+                if(scannedText.length()<1){
+                    System.out.println("Bad input, try write correct  count of pages:");
+                }else{
+                    this.numberOfPages = Integer.parseInt(scannedText);
+                    break;
+                }
+            }
+            catch (Exception e){
+                System.out.println("Bad input, try write correct  count of pages:");
+            }
+        }
         this.typeOfBook = textFormating(typeOfBook);
         this.borrowed = false;
         if (typeOfBook.equals("Standard"))

@@ -12,17 +12,66 @@ public class Address {
     public Address() {
         Scanner sc = new Scanner(System.in);
         System.out.print("Street name:");
-        String scannedText = sc.nextLine();
-        this.streetName = textFormating(scannedText);
+        String scannedText;
+        while (true){
+            try {
+                scannedText = sc.nextLine();
+                if(scannedText.length()<1){
+                    System.out.println("Bad input, try write correct  street name:");
+                }else{
+                    this.streetName = textFormating(scannedText);
+                    break;
+                }
+            }
+            catch (Exception e){
+                System.out.println("Bad input, try write correct  street name:");
+            }
+        }
         System.out.print("Street number:");
-        scannedText = sc.nextLine();
-        this.streetNum = Integer.parseInt(scannedText);
+        while (true){
+            try {
+                scannedText = sc.nextLine();
+                if(scannedText.length()<1){
+                    System.out.println("Bad input, try write correct  street number:");
+                }else{
+                    this.streetNum = Integer.parseInt(scannedText);
+                    break;
+                }
+            }
+            catch (Exception e){
+                System.out.println("Bad input, try write correct  street number:");
+            }
+        }
         System.out.print("City:");
-        scannedText = sc.nextLine();
-        this.city = textFormating(scannedText);
+        while (true){
+            try {
+                scannedText = sc.nextLine();
+                if(scannedText.length()<1){
+                    System.out.println("Bad input, try write correct city:");
+                }else{
+                    this.city = textFormating(scannedText);
+                    break;
+                }
+            }
+            catch (Exception e){
+                System.out.println("Bad input, try write correct city:");
+            }
+        }
         System.out.print("Country:");
-        scannedText = sc.nextLine();
-        this.country = textFormating(scannedText);
+        while (true){
+            try {
+                scannedText = sc.nextLine();
+                if(scannedText.length()<1){
+                    System.out.println("Bad input, try write correct country:");
+                }else{
+                    this.country = textFormating(scannedText);
+                    break;
+                }
+            }
+            catch (Exception e){
+                System.out.println("Bad input, try write correct country:");
+            }
+        }
     }
     public Address(String streetName, Integer streetNum, String city, String country) {
         this.streetName=streetName;

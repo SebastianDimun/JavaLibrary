@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class ScientificBook extends Book {
 
-    private final String field;
+    private  String field;
 
 
 
@@ -12,8 +12,24 @@ public class ScientificBook extends Book {
         super(typeOfBook);
         System.out.print("Add scientific field of book: ");
         Scanner sc = new Scanner(System.in);
-        String scannedText = sc.nextLine();
-        this.field = textFormating(scannedText);
+        String scannedText;
+        while (true){
+            try {
+                 scannedText= sc.nextLine();
+                if(scannedText.length()<1){
+                    System.out.println("Bad input, try write correct  count of pages:");
+                }else{
+                    this.field = textFormating(scannedText);
+                    break;
+                }
+            }
+            catch (Exception e){
+                System.out.println("Bad input, try write correct  count of pages:");
+            }
+        }
+
+
+
 
     }
 
